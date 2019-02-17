@@ -261,9 +261,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec53475717ac7d439907e0652f2c85a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ecar: {fileID: 7891215069632693261, guid: ddf9bdd050e60e6408ad680c1f4f9434, type: 3}
+  ecars:
+  - {fileID: 5903279172479889342, guid: 51956184a79371f4ab6a97510d0469cc, type: 3}
+  - {fileID: 7891215069632693261, guid: ddf9bdd050e60e6408ad680c1f4f9434, type: 3}
   maxPos: 2.1
-  delayTimer: 0.62
+  delayTimer: 1.09
 --- !u!1 &401083379
 GameObject:
   m_ObjectHideFlags: 0
