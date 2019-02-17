@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class uiManager : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class uiManager : MonoBehaviour
         
     }
 
+    public void Play()
+    {
+        SceneManager.LoadScene("level1");
+        //Application.LoadLevel("level1");
+    }
+
     public void Pause()
     {
         if (Time.timeScale == 1)
@@ -28,4 +35,6 @@ public class uiManager : MonoBehaviour
         }
 
     }
+
+    
 }
