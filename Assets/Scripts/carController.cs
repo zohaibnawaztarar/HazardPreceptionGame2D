@@ -11,13 +11,14 @@ public class carController : MonoBehaviour
     public float maxPos = 2.1f;
 
     public uiManager ui;
+
+    public audioManager am;
  
 
     // Start is called before the first frame update
     void Start()
     {
-       // ui = GetComponent<uiManager>();
-
+        am.carSound.Play ();
         pos = transform.position;
         
     }
@@ -46,7 +47,7 @@ public class carController : MonoBehaviour
             Destroy(gameObject);
             ui.gameOverActivated();
 
-
+            am.carSound.Stop ();
         }
     }
 }

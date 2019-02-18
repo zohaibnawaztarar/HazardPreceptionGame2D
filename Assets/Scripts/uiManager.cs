@@ -10,7 +10,7 @@ public class uiManager : MonoBehaviour
     public Text scoreText;
     bool gameOver;
     int score;
-    
+    public audioManager am;
 
     // Start is called before the first frame update
     void Start()
@@ -56,13 +56,18 @@ public class uiManager : MonoBehaviour
 
     public void Pause()
     {
+        if (gameOver) return; // pause only if game is not over
+
         if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
+            am.carSound.Stop ();
         }
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
+            am.carSound.Play ();
+
         }
 
     }
