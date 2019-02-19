@@ -13,29 +13,58 @@ public class carController : MonoBehaviour
     public uiManager ui;
 
     public audioManager am;
- 
+    
+    bool currentPlatformAndroid = false;
+    
+    void Awake()
+    {
+       // Remove below comments to test on android
+
+      /* #if UNITY_ANDROID
+        currentPlatformAndroid = true;
+       #else
+        currentPlatformAndroid = false;
+       #endif */
+
+        am.carSound.Play ();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        am.carSound.Play ();
+        //am.carSound.Play ();
         pos = transform.position;
+
+        // code for debugging
+        if (currentPlatformAndroid == true)
+        {
+            Debug.Log("Android");
+           
+        }
+        else
+        {
+            Debug.Log("Windows");
+        }
         
     }
 
     // Update is called once per frame
     void Update()
     {
-    
-        
-       pos.x += Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
+        if (currentPlatformAndroid == true)
+        {
+            //input for android only
 
-       pos.x = Mathf.Clamp(pos.x, -2.1f, 2.1f);
+        }
+        else
+        {
+            // input for window/linux
+            pos.x += Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
 
-        transform.position = pos;
+            pos.x = Mathf.Clamp(pos.x, -2.1f, 2.1f);
 
-      
-
+            transform.position = pos;
+        }
 
     }
 
