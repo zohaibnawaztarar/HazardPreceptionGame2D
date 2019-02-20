@@ -15,9 +15,13 @@ public class carController : MonoBehaviour
     public audioManager am;
     
     bool currentPlatformAndroid = false;
-    
+
+    Rigidbody2D rb;
+
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D> ();
+
        // Remove below comments to test on android
 
       /* #if UNITY_ANDROID
@@ -59,13 +63,16 @@ public class carController : MonoBehaviour
         else
         {
             // input for window/linux
-            pos.x += Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
+           // pos.x += Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
 
-            pos.x = Mathf.Clamp(pos.x, -2.1f, 2.1f);
+            //pos.x = Mathf.Clamp(pos.x, -2.1f, 2.1f);
 
-            transform.position = pos;
+            //transform.position = pos;
         }
+        pos = transform.position;
+         pos.x = Mathf.Clamp(pos.x, -2.1f, 2.1f);
 
+         transform.position = pos;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -73,10 +80,26 @@ public class carController : MonoBehaviour
 
         if (col.gameObject.tag == "Enemy Car")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
             ui.gameOverActivated();
 
             am.carSound.Stop ();
         }
+    }
+
+    public void MoveLeft()
+    {
+        rb.velocity = new Vector2(-carSpeed, 0);
+    }
+
+    public void MoveRight()
+    {
+        rb.velocity = new Vector2(carSpeed, 0);
+    }
+
+    public void SetVelocityZero()
+    {
+        rb.velocity = Vector2.zero;
     }
 }
