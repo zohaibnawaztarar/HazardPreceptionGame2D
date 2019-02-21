@@ -14,7 +14,7 @@ public class carController : MonoBehaviour
 
     public audioManager am;
     
-    bool currentPlatformAndroid = false;
+    bool currentPlatformAndroid = true;
 
     Rigidbody2D rb;
 
@@ -58,10 +58,12 @@ public class carController : MonoBehaviour
         if (currentPlatformAndroid == true)
         {
             //input for android only
+            TouchMove ();
 
         }
         else
         {
+            
             // input for window/linux
            // pos.x += Input.GetAxis("Horizontal") * carSpeed * Time.deltaTime;
 
@@ -88,14 +90,39 @@ public class carController : MonoBehaviour
         }
     }
 
+    void TouchMove()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            
+            float middle = Screen.width/2;
+            if(touch.position.x < middle && touch.phase == TouchPhase.Began)
+            {
+                MoveLeft(); 
+            }
+
+            else if(touch.position.x > middle && touch.phase == TouchPhase.Began)
+            {
+                MoveRight(); 
+            }
+
+            else
+            {
+                SetVelocityZero();
+            }
+        }
+    }
+
+
     public void MoveLeft()
     {
-        rb.velocity = new Vector2(-carSpeed, 0);
+        rb.velocity = new Vector2(-carSpeed*5, 0);
     }
 
     public void MoveRight()
     {
-        rb.velocity = new Vector2(carSpeed, 0);
+        rb.velocity = new Vector2(carSpeed*5, 0);
     }
 
     public void SetVelocityZero()
