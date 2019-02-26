@@ -23,7 +23,7 @@ public class carSpawner : MonoBehaviour
         timer -= Time.deltaTime;
         if (timer <= 0) { 
         Vector3 carPos = new Vector3(Random.Range(-2.1f, 2.1f), transform.position.y, transform.position.z);
-            carNo = Random.Range (0,3);
+            carNo = Random.Range (0,4);
             Instantiate(ecars[carNo], carPos, transform.rotation);
             timer = delayTimer;
         }

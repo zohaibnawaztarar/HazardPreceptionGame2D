@@ -58,7 +58,9 @@ public class carController : MonoBehaviour
         if (currentPlatformAndroid == true)
         {
             //input for android only
-            TouchMove ();
+            // TouchMove ();  /// to enable touch button move
+
+            AccelerometerMove ();
 
         }
         else
@@ -114,15 +116,31 @@ public class carController : MonoBehaviour
         }
     }
 
+    void AccelerometerMove()
+    {
+        float x = Input.acceleration.x;
+        if (x < -0.2f )
+        {
+            MoveLeft();
+        }
+        else if (x > 0.2f )
+        {
+            MoveRight();
+        }
+        else
+        {
+            SetVelocityZero();
+        }
+    }
 
     public void MoveLeft()
     {
-        rb.velocity = new Vector2(-carSpeed*5, 0);
+        rb.velocity = new Vector2(-carSpeed, 0);
     }
 
     public void MoveRight()
     {
-        rb.velocity = new Vector2(carSpeed*5, 0);
+        rb.velocity = new Vector2(carSpeed, 0);
     }
 
     public void SetVelocityZero()
